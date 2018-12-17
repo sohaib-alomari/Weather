@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Log.d("ReturnString", s + " " + postCity + "   " + Weather_URL);
 
             String result = s;
-
+            WeatherAdapter.ExtractFeaturesFromJson(result);
             mLoadingIndicator.setVisibility(View.INVISIBLE);
             recyclerView.setVisibility(View.VISIBLE);
 
