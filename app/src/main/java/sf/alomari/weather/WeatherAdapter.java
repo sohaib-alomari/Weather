@@ -9,12 +9,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.net.HttpURLConnection;
 
 public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherHolder> {
 
@@ -108,10 +111,39 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherH
 
 
     public static void  ExtractFeaturesFromJson(String JsonResponse) {
+    MainActivity main=new MainActivity();
+
+
 
         try {
 
             JSONObject jsonObject = new JSONObject(JsonResponse);
+
+            /* Is there an error? */
+            if (jsonObject.has("cod")) {
+                int errorCode = jsonObject.getInt("cod");
+
+                switch (errorCode) {
+                    case HttpURLConnection.HTTP_OK:
+                        break;
+                    case HttpURLConnection.HTTP_NOT_FOUND:
+                        /* Location invalid */
+
+                        break;
+                    default:
+                        /* Server probably down */
+                        break;
+                }
+            }
+
+
+
+
+
+
+
+
+
             JSONArray jsonArr = jsonObject.getJSONArray("list");
 
 

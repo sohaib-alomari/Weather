@@ -1,6 +1,9 @@
 package sf.alomari.weather;
 
+import android.content.DialogInterface;
+import android.content.res.Configuration;
 import android.os.AsyncTask;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
@@ -11,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.net.URL;
@@ -46,6 +50,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     }
+
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+        // Checks the orientation of the screen
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            Toast.makeText(this, "landscape", Toast.LENGTH_SHORT).show();
+        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+            Toast.makeText(this, "portrait", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+
+
+
+
+
+
+
+
 
     @Override
     public void onClick(View view) {
