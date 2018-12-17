@@ -3,6 +3,8 @@ package sf.alomari.weather;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -13,7 +15,7 @@ import android.widget.ProgressBar;
 import java.io.IOException;
 import java.net.URL;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private WeatherAdapter adapter;
     Button searchButton;
@@ -27,6 +29,27 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        mLoadingIndicator = (ProgressBar) findViewById(R.id.pb_loading_indicator);
+        recyclerView=(RecyclerView)findViewById(R.id.recyclerview_forecast);
+        recyclerView.setHasFixedSize(true);
+        LinearLayoutManager layoutManager=new LinearLayoutManager(this);
+        recyclerView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
+        recyclerView.setLayoutManager(layoutManager);
+        searchButton=(Button)findViewById(R.id.search_button);
+        searchText=(EditText)MainActivity.this.findViewById(R.id.search_box);
+
+        searchButton.setOnClickListener(this);
+
+
+
+
+
+
+    }
+
+    @Override
+    public void onClick(View view) {
 
     }
 
